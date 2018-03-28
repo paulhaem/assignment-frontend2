@@ -1,0 +1,22 @@
+{
+	"players": [
+		{
+      "slug": "garry-kasparov",
+			"firstName": "Garry",
+			"lastName": "Kasparov",
+			"dayOfBirth": "1963-04-13T10:53:45Z",
+      "peakRating": 2851,
+      "bio": "https://en.wikipedia.org/wiki/Garry_Kasparov",
+      "avatar": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Kasparov-34.jpg"
+		},
+		{
+      "slug": "sergey-karjakin",
+			"firstName": "Sergey",
+			"lastName": "Karjakin",
+			"dayOfBirth": "1990-01-12T10:53:45Z",
+      "peakRating": 2788,
+      "bio": "https://en.wikipedia.org/wiki/Sergey_Karjakin",
+      "avatar": "https://upload.wikimedia.org/wikipedia/commons/2/22/Sergey_Karjakin_%282017-07-06%29_02.jpg"
+    }
+	]
+}
