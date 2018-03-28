@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import router from 'page'
+import Handlebars from 'hbsfy/runtime'
 
 // helper
 import age from './helpers/age'
@@ -13,6 +14,8 @@ import notFoundTpl from './templates/not-found.hbs'
 
 // json
 import playersJson from './players.json'
+
+Handlebars.registerHelper('age', age)
 
 const $app = $('#app')
 
