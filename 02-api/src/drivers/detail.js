@@ -28,14 +28,10 @@ export default function detail(context) {
       return Promise.all([driverStream.json(), constructorsStream.json(), resultsStream.json()])
     })
     // ToDo: improve process
-    .then(([driver, constructors, results]) => {
-      return {
-        driver: processDriver(driver),
-        constructors: processConstructors(constructors),
-        results: processResults(results)
-      }
+    .then(([driverJson, constructorsJson, resultsJson]) => {
+      return Promise.all([processDriver(driverJson), processConstructors(constructorsJson), processResults(resultsJson)])
     })
-    .then(data => tpl({driver: data.driver, constructors: data.constructors, results: data.results}))
+    .then(([driver, constructors, results]) => tpl({driver, constructors, results}))
     .then(html => $app.html(html))
     .catch(error => console.error('Driver Detail Error:', error))
 }

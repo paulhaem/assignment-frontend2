@@ -1,6 +1,13 @@
 <h2>Driver: {{driver.givenName}} {{driver.familyName}}</h2>
 <table class="table">
-{{#each constructors}}
+  <thead>
+    <tr>
+      <th>Constructors</th>
+      <th>Nationaltiy</th>
+      <th>History</th>
+    </tr>
+  </thead>
+  {{#each constructors}}
 	<tr>
 		<td>
 			<a href="/constructor/{{constructorId}}">{{name}}</a>
@@ -10,5 +17,19 @@
 			<a href="{{url}}" title="{{name}} Wikipedia Link" target="_blank">Wikipedia</a>
 		</td>
 	</tr>
-{{/each}}
+  {{/each}}
+</table>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Race Name</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  {{#each results}}
+	<tr>
+    <td>{{raceName}}</td>
+    <td>{{date}}</td>
+	</tr>
+  {{/each}}
 </table>
