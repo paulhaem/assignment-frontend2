@@ -1,65 +1,56 @@
-const choo = require('choo');
-const html = require('choo/html');
-const emoji = require('node-emoji');
-const css = require('sheetify');
-const app = choo();
+const choo = require('choo')
+const html = require('choo/html')
+const emoji = require('node-emoji')
+const css = require('sheetify')
+const model = require('./model')
 
-css('bootstrap');
+const app = choo()
+app.model(model)
+
+css('bootstrap')
 
 const styles = css`
   h1 {
-    color: blue;
+    color: blue
   }
-`;
-
-const wagon = 'railway_car';
-
-// steam_locomotive
-app.model({
-  state: {
-    wagons: [],
-    gleis: []
-  },
-  reducers: {
-    addWagon: (data, state) => ({ wagons: [...state.wagons, wagon] }),
-    moveWagon: (data, state) => {
-      const add = [];
-
-      if (state.wagons.length > 1) {
-        state.wagons.pop();
-        add.push(wagon);
-      }
-
-      if (state.gleis.length === 0) {
-        add.push('steam_locomotive');
-      }
-
-      return Object.assign(state, {
-        wagons: state.wagons,
-        gleis: [...state.gleis, ...add]
-      });
-    }
-  }
-});
+`
 
 const mainView = (state, prev, send) => html`
   <main class=${styles}>
     <h1>Rangierbahnhof</h1>
     <hr>
-    <button onclick=${() =>
-      send('addWagon')} class="btn btn-primary">Wagen hinzufügen</button>
-    <button onclick=${() =>
-      send('moveWagon')} class="btn btn-danger">Rangieren</button>
-    <div class="gleis">
-      ${state.wagons.map((v) => emoji.get(v))}
+    <div class="form-inline">
+      <div class="form-group">
+        <button onclick=${() => send('addWagonToPool')} class="btn btn-primary">Add wagon</button>
+      </div>
+
+      <div class="form-group">
+        <select onchange=${(e) => send('changeTrackToX', { track: e.target.value })} class="form-control">
+        ${state.tracks.map((v, idx) => {
+          return html`<option value="${idx}">Gleis ${idx + 1}</option>`
+        })}
+        </select>
+
+        <button onclick=${() => send('moveWageonToTrackX')} class="btn btn-danger">Shunt</button>
+      </div>
     </div>
-    <div class="gleis">
-      ${state.gleis.map((v) => emoji.get(v))}
+
+    <div class="track">
+      Verfügbare Züge: ${state.locomotives.map((locomotive) => emoji.get(locomotive))}
     </div>
+
+    <div class="track">
+      Verfügbare Wagons: ${state.wagons.map((wagon) => emoji.get(wagon))}
+    </div>
+
+    ${state.tracks.map((track, idx) => {
+      return html`<div class="gleis">Gleis ${idx + 1}: ${track.wagons.map((wagon) => emoji.get(wagon))} <button onclick=${() => send('dispatchTrainFromTrackX', { track: idx })} class="btn btn-success">Go!</button></div>`
+    })}
+
   </main>
-`;
+`
 
-app.router((route) => [route('/', mainView)]);
+app.router((route) => [route('/', mainView)])
 
-const tree = app.start();
-document.body.appendChild(tree);
+const tree = app.start()
+document.body.appendChild(tree)
