@@ -6,6 +6,7 @@ module.exports = {
   state: {
     currentTrack: 0,
     locomotives: [],
+    // locomotives: [TRAIN, TRAIN, TRAIN, TRAIN],
     wagons: [WAGON, WAGON, WAGON, WAGON, WAGON, WAGON, WAGON, WAGON],
     tracks: [
       {
@@ -51,6 +52,8 @@ function moveWageonToTrackX(data, state) {
 
     if(state.tracks[state.currentTrack].wagons.length === 0) {
       console.log('true true')
+      console.log(state.locomotives.length)
+      console.log(state.tracks[0].wagons.length)
 
       if(state.locomotives.length > 0) {
         console.log('true true true')

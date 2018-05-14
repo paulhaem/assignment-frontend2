@@ -27,7 +27,7 @@ const mainView = (state, prev, send) => html`
       <div class="form-group">
         <select onchange=${(e) => send('changeTrackToX', { track: e.target.value })} class="form-control">
         ${state.tracks.map((v, idx) => {
-          return html`<option value="${idx}">Gleis ${idx + 1}</option>`
+          return html`<option ${state.currentTrack === idx ? 'selected' : ''} value="${idx}">Gleis ${idx + 1}</option>`
         })}
         </select>
 
