@@ -5,8 +5,7 @@ const WAGON = 'train'
 module.exports = {
   state: {
     currentTrack: 0,
-    locomotives: [],
-    // locomotives: [TRAIN, TRAIN, TRAIN, TRAIN],
+    locomotives: [TRAIN, TRAIN, TRAIN, TRAIN],
     wagons: [WAGON, WAGON, WAGON, WAGON, WAGON, WAGON, WAGON, WAGON],
     tracks: [
       {
