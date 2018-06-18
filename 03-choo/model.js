@@ -45,7 +45,7 @@ function changeTrackToX(data, state) {
 function moveWageonToTrackX(data, state) {
   if(state.wagons.length > 0 && state.tracks[state.currentTrack].wagons.length <= state.tracks[state.currentTrack].limit) {
     console.log('true')
-
+    // early exit
     const newWagons = state.wagons.splice(0, state.wagons.length - 1)
     const newTracks = state.tracks
 

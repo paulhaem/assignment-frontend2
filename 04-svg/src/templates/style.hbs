@@ -1,0 +1,29 @@
+<h3>Style</h3>
+
+<h4>Text with Style</h4>
+<div class="row">
+  <div class="col-sm-12">
+    <svg class="svg-style" viewBox="0 0 500 100">
+      <style>
+        .fancy { font: italic 40px serif; fill: salmon; }
+      </style>
+      <text x="20" y="35" class="fancy">Hello World!</text>
+    </svg>
+  </div>
+</div>
+
+<h4>Patterns</h4>
+<div class="row">
+  <div class="col-sm-12">
+    <svg class="svg-style" viewBox="0 0 500 100">
+      <defs>
+        <pattern id="diamonds" width="20" height="20" patternUnits="userSpaceOnUse">
+          <rect x="5" y="5" width="10" height="10" stroke="transparent" fill="lightsteelblue" transform="rotate(45 10 10)" />
+          <animateTransform attributeName="patternTransform" type="translate" by="80" dur="1s" repeatCount="indefinite"/>
+        </pattern>
+      </defs>
+
+      <rect x="0" y="0" width="500" height="100" fill="url(#diamonds)" />
+    </svg>
+  </div>
+</div>
