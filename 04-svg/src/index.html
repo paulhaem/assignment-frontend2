@@ -19,6 +19,7 @@
       position: relative;
     }
     .button-svg {
+      font: bold 50px sans-serif;
       position: absolute;
       top: 0;
       left: 0;
@@ -27,15 +28,12 @@
       border-radius: 15px;
       transform: translate(0, 0);
     }
-    #button-slider {
-      cursor: pointer;
-    }
-    #button-slider:hover {
-      fill: #5CB65C;
-    }
     .button-svg > text {
       cursor: default;
       user-select: none;
+    }
+    #slider {
+      cursor: pointer;
     }
   </style>
 </head>
@@ -80,9 +78,9 @@ function isOnInteractionPage() {
 }
 
 function initInteractionslider() {
-  const rightPosition = 300;
+  const rightPosition = 325;
   let isActive = true;
-  const slider = Snap.select("#button-slider");
+  const slider = Snap.select("#slider");
   let curPosX = 0;
   let move = function(dx,dy) {
     if (!isActive)
@@ -102,9 +100,6 @@ function initInteractionslider() {
     if (!isActive)
       return;
     this.data('origTransform', this.transform().local);
-    this.attr({
-      fill: "#5CB65C"
-    });
   }
 
   let stop = function() {
@@ -112,19 +107,16 @@ function initInteractionslider() {
       return;
     if (curPosX === rightPosition) {
       // User dragged the slider all the way to the right
-      Snap.select("#button-text-accepted").attr({
-        fill: "white"
+      Snap.select("#commited").attr({
+        display: "inline"
       });
-      Snap.select("#button-dir-text").attr({
-        fill: "transparent"
+      Snap.select("#direction").attr({
+        display: "none"
       });
       isActive = false;
     } else {
       // Let's move the slider back because the user didn't drag it completely to the right side
       slider.animate({"transform": 0}, 1000);
-      this.attr({
-        fill: "#53A353"
-      });
     }
   }
 
